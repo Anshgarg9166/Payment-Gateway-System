@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import { CreditCard, DollarSign, CheckCircle, AlertCircle } from 'lucide-react';
+import { CreditCard, IndianRupee, CheckCircle, AlertCircle } from 'lucide-react';
 import { api } from '../utils/api';
 
 const PaymentForm = ({ onPaymentSuccess }) => {
@@ -98,7 +98,7 @@ const PaymentForm = ({ onPaymentSuccess }) => {
             Amount (INR)
           </label>
           <div className="relative">
-            <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <IndianRupee className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
             <input
               id="amount"
               type="number"

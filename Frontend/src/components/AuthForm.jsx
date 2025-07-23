@@ -215,13 +215,6 @@ const AuthForm = ({ onLogin }) => {
               }
             </button>
             
-            {isLogin && (
-              <div className="pt-4 border-t border-gray-200">
-                <p className="text-sm text-gray-600">
-                  Demo credentials: admin@example.com / user@example.com
-                </p>
-              </div>
-            )}
           </div>
         </div>
       </div>

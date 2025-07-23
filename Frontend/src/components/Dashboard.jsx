@@ -6,7 +6,7 @@ import PaymentForm from './PaymentForm';
 import Transactions from './Transactions';
 
 // Load Stripe with your publishable key
-const stripePromise = loadStripe(import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY || 'pk_test_51234567890abcdef');
+const stripePromise = loadStripe(import.meta.env.VITE_REACT_APP_STRIPE_PUBLIC_KEY);
 
 const Dashboard = ({ role, onLogout }) => {
   const [refreshTrigger, setRefreshTrigger] = useState(0);

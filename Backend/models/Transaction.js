@@ -5,7 +5,7 @@ const transactionSchema = new mongoose.Schema({
   amount: Number,
   currency: String,
   status: String,
-  paymentIntentId: String,
+  paymentIntentId: { type: String, unique: true },
   createdAt: { type: Date, default: Date.now }
 });
 

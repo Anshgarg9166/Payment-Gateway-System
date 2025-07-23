@@ -121,14 +121,10 @@ const Transactions = ({ role, refreshTrigger }) => {
                   <div>
                     <div className="flex items-center gap-3 mb-1">
                       <span className="text-lg font-semibold text-gray-900">
-                        ₹{(transaction.amount / 100).toFixed(2)}
+                        ₹{transaction.amount.toFixed(2)}
                       </span>
-                      <span
-                        className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusClass(
-                          transaction.status
-                        )}`}
-                      >
-                        {transaction.status}
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusClass(transaction.status)}`}>
+                        {transaction.status.charAt(0).toUpperCase() + transaction.status.slice(1)}
                       </span>
                     </div>
                     <div className="text-sm text-gray-600">
@@ -140,7 +136,7 @@ const Transactions = ({ role, refreshTrigger }) => {
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-xs text-gray-500">ID: {transaction.id.slice(-8)}</div>
+                  <div className="text-xs text-gray-500">ID: {typeof (transaction.id || transaction._id) === 'string' ? (transaction.id || transaction._id).slice(-8) : 'N/A'}</div>
                 </div>
               </div>
             </div>
