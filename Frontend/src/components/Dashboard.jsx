@@ -54,11 +54,13 @@ const Dashboard = ({ role, onLogout }) => {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Payment Section */}
-          <div>
-            <Elements stripe={stripePromise}>
-              <PaymentForm onPaymentSuccess={handlePaymentSuccess} />
-            </Elements>
-          </div>
+          {role !== 'admin' && (
+            <div>
+              <Elements stripe={stripePromise}>
+                <PaymentForm onPaymentSuccess={handlePaymentSuccess} />
+              </Elements>
+            </div>
+          )}
 
           {/* Transactions Section */}
           <div>

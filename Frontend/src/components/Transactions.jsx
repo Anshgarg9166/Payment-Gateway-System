@@ -128,9 +128,9 @@ const Transactions = ({ role, refreshTrigger }) => {
                       </span>
                     </div>
                     <div className="text-sm text-gray-600">
-                      {formatDate(transaction.date)}
-                      {role === 'admin' && transaction.userEmail && (
-                        <span className="ml-2">• {transaction.userEmail}</span>
+                      {formatDate(transaction.createdAt)}
+                      {role === 'admin' && (transaction.user?.name) && (
+                        <span className="ml-2">• {transaction.user.name}</span>
                       )}
                     </div>
                   </div>

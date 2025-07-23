@@ -1,6 +1,7 @@
 require('dotenv').config();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const Transaction = require('../models/Transaction');
+const mongoose = require('mongoose');
 
 const createPaymentIntent = async (req, res) => {
   // amount is sent in paise from frontend
@@ -26,7 +27,8 @@ const createPaymentIntent = async (req, res) => {
 
 const getTransactions = async (req, res) => {
   const query = req.user.role === 'admin' ? {} : { user: req.user._id };
-  const transactions = await Transaction.find(query).populate('user', 'email');
+  // Populate both name and email
+  const transactions = await Transaction.find(query).populate('user', 'name email');
   res.json(transactions);
 };
 
@@ -58,7 +60,7 @@ const stripeWebhook = async (req, res) => {
       );
       if (!result) {
         result = await Transaction.create({
-          user: paymentIntent.metadata.userId || undefined,
+          user: paymentIntent.metadata.userId ? mongoose.Types.ObjectId(paymentIntent.metadata.userId) : undefined,
           amount: paymentIntent.amount / 100,
           currency: paymentIntent.currency ? paymentIntent.currency.toUpperCase() : 'INR',
           status: 'succeeded',
@@ -77,7 +79,7 @@ const stripeWebhook = async (req, res) => {
       );
       if (!result) {
         result = await Transaction.create({
-          user: paymentIntent.metadata.userId || undefined,
+          user: paymentIntent.metadata.userId ? mongoose.Types.ObjectId(paymentIntent.metadata.userId) : undefined,
           amount: paymentIntent.amount / 100,
           currency: paymentIntent.currency ? paymentIntent.currency.toUpperCase() : 'INR',
           status: 'failed',
